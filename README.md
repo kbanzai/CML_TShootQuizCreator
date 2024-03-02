@@ -1,11 +1,11 @@
 You can create network troubleshooting labs on CML (Cisco Modeling Lab) with this tool.
 
-Requirements:
-- Cisco Modeling Lab Environment
+# Requirements
+- Cisco Modeling Lab >= 2.6.1
 - Python >= 3.9.13
 
-Installation:
-After downloading the source, run the following command.
+# Installation
+After downloading this repository, run the following command:
 ```bash
 # check the version of python
 python --version
@@ -23,7 +23,7 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-Usage:
+# Usage
 1. Create a lab on CML
 <br>
 First, create a lab on CML and export the lab.
@@ -62,7 +62,6 @@ You can create lab files with the following command:
 ./venv/Scripts/activate
 ## For Mac or Linux
 ./venv/bin/activate
-
 # create lab files
 python ./src/create_lab.py <source_yaml_file_path> <min_wrongs> <max_wrongs> <number_of_labs> <lab_name_prefix> <destination_directory>
 ```
@@ -100,7 +99,7 @@ Hope you enjoy.
 7. View the answer
 <br>
 You can view answer with the following command.
-```
+```bash
 # view the answer of lab1
 diff -u init_lab_1.yaml answer.yaml
 ```
