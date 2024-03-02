@@ -7,7 +7,20 @@ Requirements:
 Installation:
 After downloading the source, run the following command.
 ```bash
-./install.sh
+# check the version of python
+python --version
+
+# create a virtual environment
+python -m venv venv
+
+# activate the virutal environment
+## For Windows
+./venv/Scripts/activate
+## For Mac or Linux
+./venv/bin/activate
+
+# install python packages
+pip install -r requirements.txt
 ```
 
 Usage:
@@ -44,7 +57,14 @@ Wrong:
 With this yaml file, this tool chooses correct configurations or wrong configurations randomly, then creates troubleshooting lab yaml files.
 You can create lab files with the following command:
 ```bash
-./create_labs.sh source_yaml_file_path min_wrongs max_wrongs number_of_labs  lab_name_prefix destination_directory
+# activate the virtual environment
+## For Windows
+./venv/Scripts/activate
+## For Mac or Linux
+./venv/bin/activate
+
+# create lab files
+python ./src/create_lab.py <source_yaml_file_path> <min_wrongs> <max_wrongs> <number_of_labs> <lab_name_prefix> <destination_directory>
 ```
 - source_yaml_file_path: the path of the file you created in the previous step.
 - min_wrongs: the minimum number of wrong configurations you want to include in the output file.
@@ -56,15 +76,18 @@ You can create lab files with the following command:
 After running the program, it outputs files to destination_directory.
 ```
 destination_directory:
-|- lab1
-   | - excerise_lab_1.yaml
-   | - excerise_lab_1_answer.txt
-|- lab2
-|
--- labN
+| - excercise_1.yaml
+| - excercise_2.yaml
+    ...
+| - excercise_N.yaml
+| - init_lab_1.yaml
+| - init_lab_2.yaml
+    ...
+| - init_lab_N.yaml
+| - answer.yaml
 ```
-The tool creates a directory for each lab (lab1, lab2, ... labN).
-In each directory, it outputs a lab file for troubleshooting and the answer.
+excercise_X.yaml is a CML file; You can create a lab by importing this file on CML.
+init_lab_X.yaml is a configuration file; You can view answer by comparing answer.yaml.
 
 5. Import the lab into CML
 <br>
@@ -76,4 +99,8 @@ Hope you enjoy.
 
 7. View the answer
 <br>
-The answer is in the directory where a lab file located.
+You can view answer with the following command.
+```
+# view the answer of lab1
+diff -u init_lab_1.yaml answer.yaml
+```
