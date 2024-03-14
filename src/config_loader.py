@@ -5,11 +5,11 @@ class TShootConfig:
     def __init__(self, config):
         self.config = config
         self.yaml_conf = yaml.safe_load(config)
-        self.correct = self.yaml_conf['Correct']
-        self.wrongs = self.yaml_conf['Wrong'] if type(self.yaml_conf['Wrong']) is list else [self.yaml_conf['Wrong']]
+        self.correct = self.yaml_conf['correct']
+        self.wrongs = self.yaml_conf['wrong'] if type(self.yaml_conf['wrong']) is list else [self.yaml_conf['wrong']]
 
     def get_random_wrong_conf(self):
-        return random.choice(self.yaml_conf['Wrong'])
+        return random.choice(self.yaml_conf['wrong'])
 
 
 class ConfigLoader:
@@ -29,11 +29,11 @@ class ConfigLoader:
             normal_configs = ""
             for line in source_file.readlines():
                 trim_line = line.lstrip()
-                if trim_line.startswith("#TShoot_Start"):
+                if trim_line.startswith("#tsstart"):
                     self.configs.append(normal_configs)
                     tshoot_mode = True
                     continue
-                if trim_line.startswith("#TShoot_End"):
+                if trim_line.startswith("#tsend"):
                     tshoot_mode = False
                     self.configs.append(TShootConfig(tshoot_config))
                     tshoot_config = ""

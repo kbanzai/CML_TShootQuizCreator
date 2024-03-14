@@ -26,7 +26,7 @@ class ConfigExporter:
             if type(conf) is TShootConfig:
                 config_choice = self.choices_set.get_config(conf)
                 yaml_conf = config_choice.get_config()
-                tmp_content += tshoot_indent + yaml_conf["conf"] + "\n"
+                tmp_content += tshoot_indent + yaml_conf + "\n"
             else:
                 tmp_content += conf
 
@@ -53,7 +53,7 @@ class AnswerExporter:
         tshoot_indent = "      "
         for conf in self.config_loader.configs:
             if type(conf) is TShootConfig:
-                answer_conf += tshoot_indent + conf.correct["conf"] + "\n"
+                answer_conf += tshoot_indent + conf.correct + "\n"
             else:
                 answer_conf += conf
 

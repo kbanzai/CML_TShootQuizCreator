@@ -40,16 +40,12 @@ Here is an example.
 Assume you want to add wrong IP address configurations for GigabitEthernet 0/0, you can write YAML file as follows:
 ```
 interface GigabitEthernet 0/0
-#TShoot_Start
-Correct:
-    conf: ip address 192.168.0.1 255.255.255.0
-    description: The address of Gig 0/0 should be "192.168.0.1/24"
-Wrong:
-    - conf: ip address 192.168.0.2 255.255.255.0
-      description: The IP address of Gig0/0 is incorrect
-    - conf: ip address 192.168.0.1 255.255.255.128
-      description: The subnet mask of Gig0/0 is incorrect
-#TShoot_End
+#tsstart
+correct: ip address 192.168.0.1 255.255.255.0
+wrong:
+    - ip address 192.168.0.2 255.255.255.0
+    - ip address 192.168.0.1 255.255.255.128
+#tsend
 ```
 
 4. Run the program
